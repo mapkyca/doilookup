@@ -2,32 +2,20 @@
 
 namespace Mapkyca\DOILookup\Tests;
 
-use Mapkyca\DOILookup\DOILookup;
+use Mapkyca\DOILookup\CachedDOILookup;
+use Mapkyca\DOILookup\Tests\DOILookupTest;
 
-class DOILookupTest extends \PHPUnit\Framework\TestCase {
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+class CachedDOILookupTest extends DOILookupTest {
   
-  function doiProvider() {
-    
-    return [
-        
-        'zenodo' => [
-            '10.5281/ZENODO.4277945',
-        ],
-        'zenodo-fullurl' => [
-          'https://doi.org/10.5281/ZENODO.4277945',
-        ]
-        
-    ];
-    
-  }
-  
-  
+ 
   /**
    * @dataProvider doiProvider
    */
-  function testLookup($doi) {
+  function testCachedLookup($doi) {
     
-    $lookup = new DOILookup($doi);
+    $lookup = new CachedDOILookup( new ArrayAdapter(), $doi);
 
     $this->assertNotEmpty($lookup->getRawResult());
     
