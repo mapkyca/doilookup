@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DOILookupTest::testLookup with data set \"zenodo\"":4,"DOILookupTest::testLookup with data set \"zenodo-fullurl\"":4},"times":{"DOILookupTest::testLookup with data set \"zenodo\"":0.31,"DOILookupTest::testLookup with data set \"zenodo-fullurl\"":0.219}}

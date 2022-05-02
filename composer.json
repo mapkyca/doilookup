@@ -1,0 +1,23 @@
+{
+    "name": "mapkyca/doilookup",
+    "description": "DOI Lookup tool",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Mapkyca\\DOILookup\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcus Povey",
+            "email": "marcus@marcus-povey.co.uk"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
