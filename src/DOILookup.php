@@ -37,20 +37,29 @@ class DOILookup
         return parse_url($doi, PHP_URL_PATH);
     }
 
+    protected function normaliseString($input) : string
+    {
+        if (is_array($input)) {
+            return $input[0];
+        }
+
+        return $input;
+    }
+
     public function getRawResult() : array {
         return $this->result;
     }
 
     public function getType() : ?string {
-        return $this->getRawResult()['type'];
+        return $this->normaliseString($this->getRawResult()['type']);
     }
 
     public function getDOI() : ?string {
-        return $this->getRawResult()['DOI'];
+        return $this->normaliseString($this->getRawResult()['DOI']);
     }
 
     public function getAbstract() : ?string {
-        return $this->getRawResult()['abstract'];
+        return $this->normaliseString($this->getRawResult()['abstract']);
     }
 
     public function getCategories() : ?array {
@@ -58,15 +67,15 @@ class DOILookup
     }
 
     public function getTitle() : ?string {
-        return $this->getRawResult()['title'];
+        return $this->normaliseString($this->getRawResult()['title']);
     }
 
     public function getURL() : ?string {
-        return $this->getRawResult()['URL'];
+        return $this->normaliseString($this->getRawResult()['URL']);
     }
 
     public function getPublisher() : ?string {
-        return $this->getRawResult()['publisher'];
+        return $this->normaliseString($this->getRawResult()['publisher']);
     }
 
     public function getPublishedTime() : ?int {
