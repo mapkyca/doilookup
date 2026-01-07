@@ -17,7 +17,9 @@ class DOILookup
 
     protected function lookup(string $doi): ?array
     {
-        $client = new Client();
+        $client = new Client([
+            'allow_redirects' => true,
+        ]);
 
         $headers = [
             "Accept" => "application/vnd.citationstyles.csl+json"
