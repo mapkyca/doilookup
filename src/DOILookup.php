@@ -77,7 +77,18 @@ class DOILookup
     }
 
     public function getPublisher() : ?string {
-        return $this->normaliseString($this->getRawResult()['publisher']);
+        $result = $this->getRawResult();
+
+        // For journal articles, return the journal name instead.
+        if (
+            isset($result['type']) &&
+            str_contains($this->normaliseString($result['type']), 'journal') &&
+            !empty($result['container-title'])
+        ) {
+            return $this->normaliseString($result['container-title']);
+        }
+
+        return $this->normaliseString($result['publisher']);
     }
 
     public function getPublishedTime() : ?int {
